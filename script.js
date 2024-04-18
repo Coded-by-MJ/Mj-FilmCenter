@@ -214,9 +214,6 @@ function showMoviesAndSeries(movies){
                </div>
             `;
         
-            movieCard.addEventListener("touchstart", handleTouch);
-            movie.addEventListener("touchmove", handleTouch);
-            movieCard.addEventListener("touchend", handleRemoveTouch);
 
            main.appendChild(movieCard);
      })
