@@ -396,5 +396,4 @@ function handleRemoveTouch(event) {
 
 
 main.addEventListener('touchstart', handleTouch);
-main.addEventListener('touchmove', handleTouch);
 main.addEventListener('touchend', handleRemoveTouch);
