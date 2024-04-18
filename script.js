@@ -375,7 +375,7 @@ menuBtn.addEventListener('click', function(){
 
 
 //hover effects for mobile IOS devices
-touchmovie = document.querySelectorAll(".movie");
+let touchmovie = document.querySelectorAll(".movie");
 
 
 function handleTouch(){
