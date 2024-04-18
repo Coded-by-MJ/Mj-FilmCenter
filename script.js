@@ -372,3 +372,22 @@ menuBtn.addEventListener('click', function(){
         }, 200); 
     }
 });
+
+
+//hover effects for mobile
+touchmovie = document.querySelectorAll(".movie");
+
+
+touchmovie.forEach((m)=>{
+    m.addEventListener("touchstart", ()=>{
+       
+        m.classList.add("touch");
+    })
+});
+
+touchmovie.forEach((m)=>{
+    m.addEventListener("touchend", ()=>{
+       
+        m.classList.remove("touch");
+    })
+});

@@ -218,7 +218,7 @@ main {
   border-bottom-right-radius: 15px;
   background: linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.5));
 }
-.movie:hover .overlay, .movie:hover .overview {
+.movie:hover .overlay, .movie.touch .overlay, .movie:hover .overview, .movie.touch .overview {
   visibility: visible;
 }
 .movie > img {
