@@ -213,6 +213,10 @@ function showMoviesAndSeries(movies){
                 <div class="genre">Genre: <span>${genres}</span></div>
                </div>
             `;
+        
+            movieCard.addEventListener("touchstart", handleTouch);
+            movie.addEventListener("touchmove", handleTouch);
+            movieCard.addEventListener("touchend", handleRemoveTouch);
 
            main.appendChild(movieCard);
      })
@@ -375,20 +379,22 @@ menuBtn.addEventListener('click', function(){
 
 
 //hover effects for mobile IOS devices
-let touchmovie = document.querySelectorAll(".movie");
 
-
-function handleTouch(){
-    this.classList.add("touch");
+function handleTouch(event) {
+    const target = event.target.closest('.movie');
+    if (target) {
+        target.classList.add('touch');
+    }
 }
 
-function handleRemoveTouch(){
-    this.classList.remove("touch");
+function handleRemoveTouch(event) {
+    const target = event.target.closest('.movie');
+    if (target) {
+        target.classList.remove('touch');
+    }
 }
 
 
-touchmovie.forEach((m)=>{
-     m.addEventListener("touchstart", handleTouch);
-     m.addEventListener("touchmove", handleTouch);
-     m.addEventListener("touchend", handleRemoveTouch);
-});
+main.addEventListener('touchstart', handleTouch);
+main.addEventListener('touchmove', handleTouch);
+main.addEventListener('touchend', handleRemoveTouch);
