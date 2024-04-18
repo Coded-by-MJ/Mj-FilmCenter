@@ -374,20 +374,21 @@ menuBtn.addEventListener('click', function(){
 });
 
 
-//hover effects for mobile
+//hover effects for mobile IOS devices
 touchmovie = document.querySelectorAll(".movie");
 
 
-touchmovie.forEach((m)=>{
-    m.addEventListener("touchstart", ()=>{
-       
-        m.classList.add("touch");
-    })
-});
+function handleTouch(){
+    this.classList.add("touch");
+}
+
+function handleRemoveTouch(){
+    this.classList.remove("touch");
+}
+
 
 touchmovie.forEach((m)=>{
-    m.addEventListener("touchend", ()=>{
-       
-        m.classList.remove("touch");
-    })
+     m.addEventListener("touchstart", handleTouch);
+     m.addEventListener("touchmove", handleTouch);
+     m.addEventListener("touchend", handleRemoveTouch);
 });
