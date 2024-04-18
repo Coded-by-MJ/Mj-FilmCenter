@@ -1,6 +1,6 @@
 
 
-const tvPath = "tv.html";
+const tvPath = "tv";
 const currentPath = window.location.pathname;
 const apiKey = '9ef07499b6c050f5231237075e92547e';
 
