@@ -175,7 +175,7 @@ header nav #form button:hover svg path {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 .pagination button {
   width: 40px;
@@ -186,7 +186,7 @@ header nav #form button:hover svg path {
   border: none;
   color: #171717;
   font-size: 1rem;
-  transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in;
 }
 .pagination button.active {
   background-color: #900c0c;

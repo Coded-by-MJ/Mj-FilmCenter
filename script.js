@@ -20,9 +20,9 @@ let infoText = document.querySelector(".info-text")
 const main = document.getElementById("main");
 const pagination = document.querySelector(".pagination");
 const searchInput = document.getElementById("search");
-const form = document.getElementById("form")
-const pageOneBtn = document.getElementById("page1")
-const pageTwoBtn = document.getElementById("page2")
+const form = document.getElementById("form");
+const paginationBtn = document.querySelectorAll(".pagination-btn");
+
 
 var submitted; 
 
@@ -233,6 +233,7 @@ form.addEventListener("submit", function handleSearch(e){
     e.preventDefault();
       searchedWord = searchInput.value.trim();
 
+
     if (searchedWord && searchedWord !== "") {
         submitted = true;
         pagination.style.display = "none";
@@ -265,42 +266,19 @@ form.addEventListener("submit", function handleSearch(e){
 
 
 
+function handlePages(e) {
+ 
+    paginationBtn.forEach(p => p.classList.remove("active"));
+    this.classList.add("active");
 
-
-
-
-
-
-
-
-
-
-
-
-pageOneBtn.addEventListener("click", (e)=> {
-    page = 1;
+    page = e.target.value;
     apiUrl = currentPath.includes(tvPath) ? `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&page=${page}&sort_by=popularity.desc` : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}&sort_by=popularity.desc`;
     getMovies(apiUrl);
- 
-setTimeout(function(){
- pageTwoBtn.classList.remove("active");
- e.target.classList.add("active");
-}, 150);
+  
+}
 
-})
+paginationBtn.forEach(p => p.addEventListener("click", handlePages));
 
-
-pageTwoBtn.addEventListener("click", (e)=> {
-   page = 2;
-   apiUrl = currentPath.includes(tvPath) ? `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&page=${page}&sort_by=popularity.desc` : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}&sort_by=popularity.desc`;
-   getMovies(apiUrl);
- setTimeout(function(){
-     pageOneBtn.classList.remove("active");
-     e.target.classList.add("active");
-
- }, 150);
- 
-})
 
 
 
@@ -369,7 +347,7 @@ menuBtn.addEventListener('click', function(){
     } else {
         navEl.classList.add("fadeout");
         setTimeout(() => {
-            navEl.classList.remove('nav-bar--mobile');
+            navEl.classList.remove('mobile-navbar');
         }, 200); 
     }
 });
