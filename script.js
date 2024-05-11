@@ -240,6 +240,9 @@ form.addEventListener("submit", function handleSearch(e){
         infoText.innerHTML = verifyText(submitted);
         getSearch(searchApi + searchedWord);
         searchInput.value = "";
+
+
+        setTimeout(RemoveMobileNavBar, 200);
         
     } else {
         window.location.reload();
@@ -372,3 +375,13 @@ function handleRemoveTouch(event) {
 
 main.addEventListener('touchstart', handleTouch);
 main.addEventListener('touchend', handleRemoveTouch);
+
+
+function RemoveMobileNavBar() {
+
+    if (window.innerWidth <= 992 && submitted === true) {
+        menuBtn.click();
+    } else {
+       return;
+    }
+}
