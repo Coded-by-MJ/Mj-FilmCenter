@@ -36,7 +36,7 @@ body{
     font-size: 16px;
     background: $bg;
     width: 100%;
-    max-width: 1600px;
+    max-width: 3000px;
     margin:  0 auto;
     font-family: 'Oswald', serif;
 
@@ -255,7 +255,7 @@ header{
     text-align: left;
     font-size: clamp(1.2rem, 3vw, 1.5rem);
     color: $dark-red;
-    margin-block: 20px;
+    margin-block: 25px;
     transition: all 300ms ease-in-out;
 }
 
@@ -303,53 +303,57 @@ header{
 
 
 main{
-    display: flex;
+    display: grid;
     justify-content: center;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-rows: repeat(auto-fill, 450px);
     align-items: center;
-    gap: 10px;
+    gap: 35px;
  
 }
 
 .movie{
-        width: 285px;
-        height: 400px;
+
+      
+//   "      position: relative;"
+        // box-shadow: 0 4px 5px rgba($black, 0.2);
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        width: 100%;
+        height: 100%;
         position: relative;
-        box-shadow: 0 4px 5px rgba($black, 0.2);
-        margin: 1rem;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        background: linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.5));
+        border-radius: 15px;
+        background: linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.8));
+
        
        
 
-        &:hover .overlay, &.touch .overlay, &:hover .overview, &.touch .overview{
-             visibility: visible;
-        }
-     
-        & > img{
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            z-index: -1;
-            border-radius: 15px;
+        &:hover > .overlay, &.touch > .overlay{
+            opacity: 1;
         }
 
+        &:hover > .overview, &.touch .overview{
+              visibility: visible;
+        }
+    
 
         .vote{
-            z-index: 2;
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            display: inline-block;
+            justify-self: end;
+            align-self: start;
+            grid-column: 1 / -1;
+            grid-row: 1 / -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: $bg;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             padding: 5px;
+            margin: 8px 8px 0 0;
             color: $white;
             border-radius: 8px;
-            text-align: center;
-            font-size: 1.3em;
+            font-size: 1.2em;
 
 
             &.green{
@@ -370,16 +374,36 @@ main{
     & > h3{
         font-size: 0.9em;
         text-align: center;
-        text-wrap: rgba($gray, 30%);
-        position: absolute;
         color: $white;
         font-family: $pop;
         background-color: transparent;
-        z-index: 2;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
+        justify-self: center;
+        align-self: end;
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+        margin-bottom: 10px;  
+        padding-inline: 10px;
     }
+
+}
+
+
+
+ 
+.movie__poster{
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    border-radius: 15px;
+    z-index: -1;
+    overflow: hidden;
+    display: block;
+
+
+ &  > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 }
 
@@ -390,25 +414,18 @@ main{
         
 .overlay{
             background-image: linear-gradient(180deg, rgba($bg, 55%) calc(100% - 45%), $bg);
-            width: 100%;
-            height: 100%;
-            transition: visibility 150ms ease-in;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            visibility: hidden;
-            z-index: 1;
+            grid-column: 1 / -1;
+            grid-row: 1 / -1;
+            transition: all 150ms ease-in;
+            opacity: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             .play{
                 width: 5em;
                 height: 5em;
-                object-position: center;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                
             };
 
 }
@@ -422,6 +439,8 @@ main{
             background-color: $white;
             position: absolute;
             visibility: hidden;
+            will-change: visibility;
+            display: block;
             transition: visibility 150ms ease-in 100ms;
             z-index: 3;
             top: -10%;
@@ -715,10 +734,6 @@ header{
         }
     }
 
-
-    main{
-        justify-content: flex-start;
-    }
 
 
     .overview{

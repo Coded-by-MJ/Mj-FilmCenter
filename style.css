@@ -9,7 +9,7 @@ body {
   font-size: 16px;
   background: #1e2129;
   width: 100%;
-  max-width: 1600px;
+  max-width: 3000px;
   margin: 0 auto;
   font-family: "Oswald", serif;
 }
@@ -165,7 +165,7 @@ header nav #form button:hover svg path {
   text-align: left;
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   color: #900c0c;
-  margin-block: 20px;
+  margin-block: 25px;
   transition: all 300ms ease-in-out;
 }
 
@@ -202,47 +202,46 @@ header nav #form button:hover svg path {
 }
 
 main {
-  display: flex;
+  display: grid;
   justify-content: center;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-rows: repeat(auto-fill, 450px);
   align-items: center;
-  gap: 10px;
+  gap: 35px;
 }
 
 .movie {
-  width: 285px;
-  height: 400px;
-  position: relative;
-  box-shadow: 0 4px 5px rgba(23, 23, 23, 0.2);
-  margin: 1rem;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background: linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.5));
-}
-.movie:hover .overlay, .movie.touch .overlay, .movie:hover .overview, .movie.touch .overview {
-  visibility: visible;
-}
-.movie > img {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   width: 100%;
   height: 100%;
-  position: absolute;
-  z-index: -1;
+  position: relative;
   border-radius: 15px;
+  background: linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.8));
+}
+.movie:hover > .overlay, .movie.touch > .overlay {
+  opacity: 1;
+}
+.movie:hover > .overview, .movie.touch .overview {
+  visibility: visible;
 }
 .movie .vote {
-  z-index: 2;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  display: inline-block;
+  justify-self: end;
+  align-self: start;
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #1e2129;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   padding: 5px;
+  margin: 8px 8px 0 0;
   color: #ffffff;
   border-radius: 8px;
-  text-align: center;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 .movie .vote.green {
   color: #00c042;
@@ -256,38 +255,46 @@ main {
 .movie > h3 {
   font-size: 0.9em;
   text-align: center;
-  text-wrap: rgba(189, 189, 189, 0.3);
-  position: absolute;
   color: #ffffff;
   font-family: "Poppins", san-serif;
   background-color: transparent;
-  z-index: 2;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-self: center;
+  align-self: end;
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  margin-bottom: 10px;
+  padding-inline: 10px;
+}
+
+.movie__poster {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  border-radius: 15px;
+  z-index: -1;
+  overflow: hidden;
+  display: block;
+}
+.movie__poster > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .overlay {
   background-image: linear-gradient(180deg, rgba(30, 33, 41, 0.55) 55%, #1e2129);
-  width: 100%;
-  height: 100%;
-  transition: visibility 150ms ease-in;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  visibility: hidden;
-  z-index: 1;
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  transition: all 150ms ease-in;
+  opacity: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .overlay .play {
   width: 5em;
   height: 5em;
-  -o-object-position: center;
-     object-position: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .overview {
@@ -297,6 +304,8 @@ main {
   background-color: #ffffff;
   position: absolute;
   visibility: hidden;
+  will-change: visibility;
+  display: block;
   transition: visibility 150ms ease-in 100ms;
   z-index: 3;
   top: -10%;
@@ -515,9 +524,6 @@ footer .copy a {
 @media screen and (min-width: 1200px) {
   body > * {
     padding-inline: 1.8rem;
-  }
-  main {
-    justify-content: flex-start;
   }
   .overview {
     width: 340px;
