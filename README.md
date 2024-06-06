@@ -30,4 +30,4 @@
 
 ## Author
 
-- Twitter - [MiracleJustice_](https://twitter.com/MiracleJustice_)
+- Twitter - [MiracleJustice_](https://x.com/MiracleJustice_)
