@@ -96,12 +96,12 @@ async function getMovies(url){
 
             movieCard.innerHTML = `
                <figure class="movie__poster" >
-                 <img src="${imgPath + poster_path}" alt="${titleValue}" >
+                 <img src="${imgPath + poster_path}" alt="${titleValue}" title="${titleValue}" >
                </figure>
                <span class="vote ${getRate(roundedAverage)}">${roundedAverage}</span>
                <h3>${titleValue} (${releaseYear})</h3>
                <div class="overlay">
-                  <img src="assets/play.svg" alt="playbtn" class="play" >
+                  <img src="assets/play.svg" alt="play button" title="play button" class="play" >
                </div>
                 <div class="overview">
                   <h3>${titleValue} (${releaseYear})</h3>
@@ -196,12 +196,12 @@ function showMoviesAndSeries(movies){
 
            movieCard.innerHTML = `
               <figure class="movie__poster" >
-               <img src="${imgPath + poster_path}" alt="${titleValue}">
+               <img src="${imgPath + poster_path}" alt="${titleValue}" title="${titleValue}">
               </figure>
               <span class="vote ${getRate(roundedAverage)}">${roundedAverage}</span>
               <h3>${titleValue} (${releaseYear})</h3>
               <div class="overlay">
-                 <img src="assets/play.svg" alt="playbtn" class="play" >
+                 <img src="assets/play.svg" alt="play button" title="play button" class="play" >
               </div>
                <div class="overview">
                  <h3>${titleValue} (${releaseYear})</h3>
