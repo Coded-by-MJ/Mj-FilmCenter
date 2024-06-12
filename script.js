@@ -73,28 +73,22 @@ async function getMovies(url){
 
  function showMovies(movies){
        submitted = false;
-       main.innerHTML  = " ";
+    main.innerHTML  = " ";
 
-      movies.forEach((movie) =>{
+     
+     const movieCard = movies.map((movie) => {
 
            const {vote_average, poster_path, overview} = movie;
            const roundedAverage = vote_average.toFixed(1);
-           const titleValue = movie[verifyTitleProp()];
-           const dateValue = movie[verifyDateProp()];
+           const titleValue = movie[currentPath.includes(tvPath) ? "name" : "title"];
+           const dateValue = movie[currentPath.includes(tvPath) ? "first_air_date" : "release_date"];
            const releaseYear = Number(dateValue.split("-")[0]);
            const genres = movie.details && movie.details.genres ? movie.details.genres.map(genre => genre.name).join(', ') : 'N/A';
            const runtime = movie.details && movie.details.runtime ? movie.details.runtime + ' min' : 'N/A';
                 
-           
 
-
-          
-           const movieCard = document.createElement("div");
-                 movieCard.classList.add("movie");
-
-          
-
-            movieCard.innerHTML = `
+            return `
+               <div class="movie">
                <figure class="movie__poster" >
                  <img src="${imgPath + poster_path}" alt="${titleValue}" title="${titleValue}" >
                </figure>
@@ -116,11 +110,12 @@ async function getMovies(url){
 
                  <div class="genre">Genre: <span>${genres}</span></div>
                 </div>
+
+              </div>
              `;
+      }).join('');
 
-            main.appendChild(movieCard);
-      })
-
+      main.innerHTML = movieCard;
  }
 
 
@@ -171,10 +166,10 @@ async function getMovies(url){
 
 
 function showMoviesAndSeries(movies){
-     main.innerHTML  = " ";
+     main.innerHTML = " ";
 
     
-     movies.forEach((movie) =>{
+  const movieCard = movies.map((movie) =>{
           const {vote_average, poster_path, overview} = movie;
           const t = movie.media_type === "movie" ? "title" : "name";
           const d = movie.media_type === "movie" ? "release_date" : "first_air_date";
@@ -185,16 +180,9 @@ function showMoviesAndSeries(movies){
           const genres = movie.details && movie.details.genres ? movie.details.genres.map(genre => genre.name).join(', ') : 'N/A';
           const runtime = movie.details && movie.details.runtime ? movie.details.runtime + ' min' : 'N/A';
                
-          
 
-
-         
-          const movieCard = document.createElement("div");
-                movieCard.classList.add("movie");
-
-         
-
-           movieCard.innerHTML = `
+           return `
+              <div class="movie">
               <figure class="movie__poster" >
                <img src="${imgPath + poster_path}" alt="${titleValue}" title="${titleValue}">
               </figure>
@@ -216,11 +204,12 @@ function showMoviesAndSeries(movies){
 
                 <div class="genre">Genre: <span>${genres}</span></div>
                </div>
-            `;
-        
 
-           main.appendChild(movieCard);
-     })
+             </div>
+            `;
+     }).join('');
+
+     main.innerHTML = movieCard;
 
 }
 
@@ -302,23 +291,6 @@ function verifyText(formSubmitted) {
 }
 
 
-function verifyDateProp(){
-   if(currentPath.includes(tvPath)){
-      return "first_air_date";
-   }else{
-       return "release_date";
-   }
-}
-
-function verifyTitleProp(){
-
-     if(currentPath.includes(tvPath)){
-         return  "name";
-     }else{
-          return "title";
-     }
- 
-}
 
 
 function getRate(int){
